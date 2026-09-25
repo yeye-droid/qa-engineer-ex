@@ -1,75 +1,26 @@
-### System Specifications
+# QA Engineer Exam
 
-| Requirements | Versions |
-| :----------: | :------: |
-|   LARAVEL    |   10.x    |
-|     PHP      | ^8.1.10  |
-|    MYSQL     |   ^10.4.25   |
+Automated testing implementation for the Praxxys QA Engineer Exam.
 
-## Configuration
+This project contains Laravel Dusk browser tests and Playwright end-to-end tests covering critical application flows.
 
-1.  Clone this repository.
+## Technologies
 
-    ```bash
-        $   git clone https://github.com/ericnicdao069/backend-dev-exam.git
-    ```
+- Laravel 10
+- PHP 8.2
+- MySQL/MariaDB
+- Laravel Dusk
+- PHPUnit
+- Playwright
+- TypeScript
+- Chromium
+- Firefox
+- GitHub Actions
 
-2.  Recreate environment variable file.
+## Installation
 
-    ```bash
-        $   cp .env.example .env
-    ```
+### 1. Clone the repository
 
-3.  Install composer and npm.
-
-    ```bash
-        $   composer install && npm install
-    ```
-
-4.  Generate Application Key.
-
-    ```bash
-        $   php artisan key:generate
-    ```
-
-5.  Create your DB and update your DB configs in .env.
-
-    ```bash
-        $   DB_CONNECTION=mysql
-        $   DB_HOST=127.0.0.1
-        $   DB_PORT=3306
-        $   DB_DATABASE=laravel
-        $   DB_USERNAME=root
-        $   DB_PASSWORD=
-    ```
-
-6.  Execute Database Migration and Seeders.
-
-    ```bash
-        $   php artisan migrate --seed
-    ```
-
-7.  Create a symlink for Storage in Public Directory.
-
-    ```bash
-        $   php artisan storage:link
-    ```
-
-8.  Generate Ziggy routes.
-
-    ```bash
-        $   php artisan ziggy:generate
-    ```
-
-9.  Run local server.
-
-    ```bash
-        $   php artisan serve
-    ```
-
-10.  Front Build.
-
-    ```bash
-        $   npm run dev
-        $   npm run build
-    ```
+```bash
+git clone git@github.com:yeye-droid/qa-engineer-ex.git
+cd qa-engineer-ex
