@@ -13,13 +13,20 @@ export class LoginPage {
         this.signInButton = page.locator('button[type="submit"]');
     }
 
-    async goto() {
-        await this.page.goto('/login');
-    }
 
-    async login(email: string, password: string) {
+
+async goto() {
+    await this.page.goto('/login');
+    console.log('LOGIN URL:', this.page.url());
+    console.log('LOGIN TITLE:', await this.page.title());
+    console.log(
+        'LOGIN HTML:',
+        (await this.page.locator('body').innerText()).substring(0, 1000)
+    );
+}
+async login(email: string, password: string) {
         await this.emailInput.fill(email);
         await this.passwordInput.fill(password);
         await this.signInButton.click();
-    }
+  }
 }
