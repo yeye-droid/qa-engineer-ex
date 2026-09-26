@@ -35,6 +35,7 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist
 
+<<<<<<< HEAD
       - name: Install Node dependencies
         run: npm ci
 
@@ -43,6 +44,8 @@ jobs:
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
+=======
+>>>>>>> d7b47b6 (build frontend assests before playwright tests)
 
       - name: Prepare Laravel application
         run: |
@@ -87,7 +90,14 @@ jobs:
       - name: Upload Playwright report
         if: always()
         uses: actions/upload-artifact@v4
-        with:
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build frontend assets
+        run: npm run build
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps  with:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
