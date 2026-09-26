@@ -35,6 +35,21 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist
 
+      - name: Prepare Laravel application
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Generate Ziggy routes
+        run: php artisan ziggy:generate
+
+      - name: Prepare database
+        run: |
+          touch database/database.sqlite
+          sed -i 's/^DB_CONNECTION=.*/DB_CONNECTION=sqlite/' .env
+          sed -i 's|^DB_DATABASE=.*|DB_DATABASE=database/database.sqlite|' .env
+          php artisan migrate --seed --force
+
       - name: Install Node dependencies
         run: npm ci
 
@@ -43,18 +58,6 @@ jobs:
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
-
-      - name: Prepare Laravel application
-        run: |
-          cp .env.example .env
-          php artisan key:generate
-
-      - name: Prepare database
-        run: |
-          touch database/database.sqlite
-          sed -i 's/^DB_CONNECTION=.*/DB_CONNECTION=sqlite/' .env
-          sed -i 's|^DB_DATABASE=.*|DB_DATABASE=database/database.sqlite|' .env
-          php artisan migrate --seed --force
 
       - name: Start Laravel server
         run: |
