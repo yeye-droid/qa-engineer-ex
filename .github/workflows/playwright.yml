@@ -71,11 +71,13 @@ jobs:
           echo "Laravel server failed to start"
           cat storage/logs/laravel.log
           exit 1
-     - name: Check login page
+               exit 1
+
+      - name: Check login page
         run: |
           echo "Checking Laravel login page..."
           curl -i http://127.0.0.1:8000/login
-          
+
       - name: Run Playwright tests
         run: npx playwright test
 
