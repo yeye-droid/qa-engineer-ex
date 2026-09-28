@@ -13,6 +13,8 @@ class LogoutTest extends DuskTestCase
         $admin = Admin::factory()->create();
 
         $this->browse(function (Browser $browser) use ($admin) {
+            $browser->driver->manage()->deleteAllCookies();
+
             $browser->visit('/login')
                 ->type('email', $admin->email)
                 ->type('password', 'password')

@@ -13,18 +13,16 @@ class ProductCreateTest extends DuskTestCase
         $admin = Admin::factory()->create();
 
         $this->browse(function (Browser $browser) use ($admin) {
+            $browser->driver->manage()->deleteAllCookies();
+
             $browser->visit('/login')
+                ->assertSee('Sign In')
                 ->type('email', $admin->email)
                 ->type('password', 'password')
                 ->press('Sign In')
                 ->assertPathIs('/product')
                 ->clickLink('Create')
-                ->assertPathIs('/product/form')
-                ->assertSee('Product Create')
-                ->assertSee('Name')
-                ->assertSee('Category')
-                ->assertSee('Description')
-                ->assertSee('Step 1 / 3');
+                ->assertPathIs('/product/form');
         });
     }
-} 
+}

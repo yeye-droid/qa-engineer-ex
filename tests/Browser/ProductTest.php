@@ -13,6 +13,8 @@ class ProductTest extends DuskTestCase
         $admin = Admin::factory()->create();
 
         $this->browse(function (Browser $browser) use ($admin) {
+            $browser->driver->manage()->deleteAllCookies();
+
             $browser->visit('/login')
                 ->type('email', $admin->email)
                 ->type('password', 'password')
@@ -20,7 +22,7 @@ class ProductTest extends DuskTestCase
                 ->assertPathIs('/product')
                 ->assertSee('Products')
                 ->assertSee('Create')
-                ->assertPresent('input[placeholder="Search Product..."	]');
+                ->assertPresent('input[placeholder="Search Product..."  ]');
         });
     }
 }

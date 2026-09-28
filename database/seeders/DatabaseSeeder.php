@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Admin;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,19 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Admin::factory(1)->create();
+        Admin::updateOrCreate(
+            ['email' => 'kling.rod@example.com'],
+            [
+                'name' => 'Test Admin',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]
+        );
 
-        $admin = Admin::first();
-
-        $this->command->info("Dummy Admin Created");
-        $this->command->info("Email: $admin->email");
-        $this->command->info("Password: password");
-
-        \App\Models\Product::factory(50)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Product::factory(50)->create();
     }
 }
